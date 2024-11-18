@@ -1,0 +1,30 @@
+import React from 'react';
+import Navbar from './components/Navbar';
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
+import TermsOfUse from './components/TermsOfUse';
+import ForgotYourPassword from './components/ForgotYourPassword';
+import Footer from './components/Footer';
+import ContactUs from './components/ContactUs';
+// import Career from './components/Career';
+import BlogPage from './components/BlogPage';
+import LudoBoard from './components/LudoBoard';
+
+function App() {
+  return (
+    <div className='container'>
+    <Navbar/>
+    <TermsOfUse/>
+    <LoginPage/>
+    <SignUpPage/>
+    <ForgotYourPassword/>
+    <Footer/>
+    <ContactUs/>
+    <BlogPage/>
+    <LudoBoard/>
+    {/* <Career/> */}
+    </div>
+  );
+}
+
+export default App;

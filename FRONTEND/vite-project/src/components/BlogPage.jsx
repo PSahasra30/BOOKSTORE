@@ -1,12 +1,12 @@
 import React from "react";
 import "./BlogPage.css"; 
-
+import image1 from "../assets/Blog1.png"
 // Blog data
 const blogPosts = [
   {
     id: 1,
     title: "Top 10 Books to Read in 2024",
-    image: "https://via.placeholder.com/400x200",
+    image: image1,
     content: `
       Discover the must-read books for 2024! Whether you're into fiction, 
       non-fiction, or self-help, this list covers it all. Dive into thrilling mysteries, 
@@ -84,6 +84,7 @@ const blogPosts = [
 ];
 
 const BlogPage = () => {
+  console.log(image1);
   return (
     <div className="blog-container">
       <h1 className="blog-heading">Resources - Blog</h1>

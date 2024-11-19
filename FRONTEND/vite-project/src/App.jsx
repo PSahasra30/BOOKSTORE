@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
 // import Career from './components/Career';
 import BlogPage from './components/BlogPage';
-import LudoBoard from './components/LudoBoard';
+// import LudoBoard from './components/LudoBoard';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
     <Footer/>
     <ContactUs/>
     <BlogPage/>
-    <LudoBoard/>
+    {/* <LudoBoard/> */}
     {/* <Career/> */}
     </div>
   );

@@ -1,12 +1,12 @@
 import React from "react";
 import "./BlogPage.css"; 
-
+import image from "../assets/Blog1.png"
 // Blog data
 const blogPosts = [
   {
     id: 1,
     title: "Top 10 Books to Read in 2024",
-    image: "https://via.placeholder.com/400x200",
+    image: image,
     content: `
       Discover the must-read books for 2024! Whether you're into fiction, 
       non-fiction, or self-help, this list covers it all. Dive into thrilling mysteries, 

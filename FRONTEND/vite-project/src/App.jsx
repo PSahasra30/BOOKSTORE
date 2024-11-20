@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
@@ -12,18 +13,25 @@ import BlogPage from './components/BlogPage';
 
 function App() {
   return (
-    <div className='container'>
-    <Navbar/>
-    <TermsOfUse/>
-    <LoginPage/>
-    <SignUpPage/>
-    <ForgotYourPassword/>
-    <Footer/>
-    <ContactUs/>
-    <BlogPage/>
-    {/* <LudoBoard/> */}
-    {/* <Career/> */}
-    </div>
+    // <div className='container'>
+    // <Navbar/>
+    // <TermsOfUse/>
+    // <LoginPage/>
+    // <SignUpPage/>
+    // <ForgotYourPassword/>
+    // <Footer/>
+    // <ContactUs/>
+    // <BlogPage/>
+    // {/* <LudoBoard/> */}
+    // {/* <Career/> */}
+    // </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<Navbar />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className='navbar'>
       <img src={<FontAwesomeIcon icon = {faEnvelope}/>} alt=" " className='logo'/>
       <ul>
-        <li><a href=''>Home</a></li>
+        <li><a href='/'>Home</a></li>
         <li><a href=''>Course</a></li>
         <li><a href=''>Contact</a></li>
         <li><a href=''>About</a></li>
@@ -24,7 +24,7 @@ const Navbar = () => {
       <img src=" " alt=" " className='toggle-icon'/>
 
       <div className='login-btn'>
-        <a href=''>Login</a>
+        <a href='/login'>Login</a>
       </div>
       
     </div>

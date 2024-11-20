@@ -124,7 +124,7 @@ function SignupPage() {
             fontWeight:"bold",
           }}
         >
-          Existing User? Login
+          <a href="/login">Existing User? Login</a>
         </button>
       </form>
       <p style={{ textAlign: "center", marginTop: "20px", fontSize: "14px" }}>

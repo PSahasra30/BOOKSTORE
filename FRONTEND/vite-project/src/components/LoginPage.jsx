@@ -20,15 +20,7 @@ const LoginPage = () => {
     alert("Login successful!");
   };
 
-  const handleForgotPassword = () => {
-    alert("Redirecting to password recovery page!");
-    // Replace this with navigation logic if needed
-  };
-
-  const handleSignUp = () => {
-    alert("Redirecting to sign-up page!");
-    // Replace this with navigation logic if needed
-  };
+  
 
   return (
     <div style={styles.container}>
@@ -69,13 +61,9 @@ const LoginPage = () => {
         </button>
         <div style={styles.signupContainer}>
           <p>New to this site?</p>
-          <button
-            type="button"
-            onClick={handleSignUp}
-            style={styles.signupButton}
-          >
-            Sign Up
-          </button>
+          
+            <a href="/signup">Sign Up</a>
+          
         </div>
         <div style={styles.terms}>
           <p>

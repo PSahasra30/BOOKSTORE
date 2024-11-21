@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   return (
     <div style={styles.container}>
-      <form onSubmit={handleLogin} style={styles.form}>
+      <form style={styles.form}>
         <h2 style={{color:"#030303",textAlign:"center"}}>Login</h2>
         {error && <p style={styles.error}>{error}</p>}
         <div style={styles.field}>
@@ -50,10 +50,10 @@ const LoginPage = () => {
         <div style={styles.linkContainer}>
           <button
             type="button"
-            onClick={handleForgotPassword}
+           
             style={styles.linkButton}
           >
-            Forgot your password?
+            <a href="/fup">Forgot your password?</a>
           </button>
         </div>
         <button type="submit" style={styles.button}>

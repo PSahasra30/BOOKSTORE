@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
 // import Career from './components/Career';
 import BlogPage from './components/BlogPage';
+// import Books from './components/Books';
 // import LudoBoard from './components/LudoBoard';
 
 function App() {

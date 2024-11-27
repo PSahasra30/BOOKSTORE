@@ -1,0 +1,21 @@
+.genre-button {
+    background: #f8f9fa;
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: color 0.3s, background 0.3s;
+  }
+  
+  .genre-button:hover {
+    color: #f25822;
+  }
+  
+  .genre-button.selected {
+    background: #f25822;
+    color: #fff;
+  }
+  

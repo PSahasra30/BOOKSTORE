@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from 'axios';
 function SignupPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -17,14 +17,33 @@ function SignupPage() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!formData.isNotRobot) {
       alert("Please confirm that you are not a robot.");
       return;
     }
-    console.log("Form Submitted:", formData);
-    alert(`Signup Successful!\nWelcome, ${formData.name}!\nSubscribed to Newsletter: ${formData.subscribeNewsletter ? "Yes" : "No"}`);
+  
+    try {
+      const response = await axios.post("http://localhost:5000/api/signup", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        subscribeNewsletter: formData.subscribeNewsletter,
+      });
+  
+      alert(response.data.message);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        isNotRobot: false,
+        subscribeNewsletter: false,
+      });
+    } catch (error) {
+      alert("Error signing up. Please try again.");
+      console.error(error);
+    }
   };
 
   const handleLoginRedirect = () => {

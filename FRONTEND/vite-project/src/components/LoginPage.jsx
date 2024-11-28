@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     // Basic validation
@@ -14,18 +15,28 @@ const LoginPage = () => {
       return;
     }
 
-    // Mock login logic
-    console.log("Logging in with:", { email, password });
-    setError(""); // Clear any errors
-    alert("Login successful!");
-  };
+    try {
+      const response = await axios.post("http://localhost:5000/api/login", {
+        email,
+        password,
+      });
 
-  
+      if (response.data.success) {
+        alert("Login successful!");
+        // You can redirect or perform further actions here
+      } else {
+        setError(response.data.message || "Invalid credentials");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Error logging in. Please try again later.");
+    }
+  };
 
   return (
     <div style={styles.container}>
       <form style={styles.form}>
-        <h2 style={{color:"#030303",textAlign:"center"}}>Login</h2>
+        <h2 style={{ color: "#030303", textAlign: "center" }}>Login</h2>
         {error && <p style={styles.error}>{error}</p>}
         <div style={styles.field}>
           <label>Email:</label>
@@ -48,22 +59,16 @@ const LoginPage = () => {
           />
         </div>
         <div style={styles.linkContainer}>
-          <button
-            type="button"
-           
-            style={styles.linkButton}
-          >
+          <button type="button" style={styles.linkButton}>
             <a href="/fup">Forgot your password?</a>
           </button>
         </div>
-        <button type="submit" style={styles.button}>
+        <button type="button" onClick={handleLogin} style={styles.button}>
           Login
         </button>
         <div style={styles.signupContainer}>
           <p>New to this site?</p>
-          
-            <a href="/signup">Sign Up</a>
-          
+          <a href="/signup">Sign Up</a>
         </div>
         <div style={styles.terms}>
           <p>
@@ -99,7 +104,7 @@ const styles = {
   },
   field: {
     marginBottom: "15px",
-    color: "#030303"
+    color: "#030303",
   },
   input: {
     width: "100%",
@@ -137,15 +142,7 @@ const styles = {
   signupContainer: {
     marginTop: "20px",
     textAlign: "center",
-    color: "#F25822"
-  },
-  signupButton: {
-    background: "none",
-    border: "none",
     color: "#F25822",
-    cursor: "pointer",
-    textDecoration: "none",
-    fontSize: "14px",
   },
   terms: {
     marginTop: "20px",
@@ -160,4 +157,3 @@ const styles = {
 };
 
 export default LoginPage;
-

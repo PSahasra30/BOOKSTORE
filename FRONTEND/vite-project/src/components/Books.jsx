@@ -96,7 +96,7 @@ const Books = () => {
       </div>
 
       {/* Book Grid */}
-      <div style={{ width: "80%" }}>
+      <div style={{ width: "80%",height:"0%" }}>
         <h1>Library Books</h1>
         {filteredBooks.length > 0 ? (
           <div
@@ -104,6 +104,7 @@ const Books = () => {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
               gap: "20px",
+              
             }}
           >
             {filteredBooks.map((book) => (
@@ -122,7 +123,7 @@ const Books = () => {
                   alt={book.title}
                   style={{
                     width: "100%",
-                    height: "150px",
+                    height: "270px",
                     objectFit: "cover",
                     borderRadius: "5px",
                   }}

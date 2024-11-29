@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
 function SignupPage() {
   const [formData, setFormData] = useState({
@@ -6,7 +7,6 @@ function SignupPage() {
     email: "",
     password: "",
     isNotRobot: false,
-    subscribeNewsletter: false,
   });
 
   const handleChange = (event) => {
@@ -17,14 +17,31 @@ function SignupPage() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!formData.isNotRobot) {
       alert("Please confirm that you are not a robot.");
       return;
     }
-    console.log("Form Submitted:", formData);
-    alert(`Signup Successful!\nWelcome, ${formData.name}!\nSubscribed to Newsletter: ${formData.subscribeNewsletter ? "Yes" : "No"}`);
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/signup", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
+
+      alert(response.data.message);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        isNotRobot: false,
+      });
+    } catch (error) {
+      alert("Error signing up. Please try again.");
+      console.error(error);
+    }
   };
 
   const handleLoginRedirect = () => {
@@ -33,7 +50,7 @@ function SignupPage() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "10px" ,backgroundColor:"#fff"}}>
+    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "10px", backgroundColor: "#fff" }}>
       <h2 style={{ textAlign: "center" }}>Signup</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "15px" }}>
@@ -82,16 +99,6 @@ function SignupPage() {
           />
           <label>I’m not a robot</label>
         </div>
-        <div style={{ marginBottom: "15px", display: "flex", alignItems: "center" }}>
-          <input
-            type="checkbox"
-            name="subscribeNewsletter"
-            checked={formData.subscribeNewsletter}
-            onChange={handleChange}
-            style={{ marginRight: "10px" }}
-          />
-          <label>Subscribe to Bookswagon Newsletter</label>
-        </div>
         <button
           type="submit"
           style={{
@@ -99,12 +106,11 @@ function SignupPage() {
             padding: "10px",
             backgroundColor: formData.isNotRobot ? "#000" : "#F25822",
             color: "#fff",
-            // border: "none",
+            border: "2px solid black",
             borderRadius: "5px",
             cursor: formData.isNotRobot ? "pointer" : "not-allowed",
             marginBottom: "10px",
-            border:"2px solid black",
-            fontWeight:"bold"
+            fontWeight: "bold",
           }}
           disabled={!formData.isNotRobot}
         >
@@ -121,10 +127,10 @@ function SignupPage() {
             border: "2px solid black",
             borderRadius: "5px",
             cursor: "pointer",
-            fontWeight:"bold",
+            fontWeight: "bold",
           }}
         >
-          <a href="/login">Existing User? Login</a>
+          <a href="/login" style={{ color: "#fff", textDecoration: "none" }}>Existing User? Login</a>
         </button>
       </form>
       <p style={{ textAlign: "center", marginTop: "20px", fontSize: "14px" }}>
@@ -142,5 +148,3 @@ function SignupPage() {
 }
 
 export default SignupPage;
-
-

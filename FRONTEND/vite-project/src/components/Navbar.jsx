@@ -1,34 +1,19 @@
-import React from 'react'
-import './Navbar.css'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import "./Navbar.css";
+
 const Navbar = () => {
   return (
-    <div className='navbar'>
-      <img src={<FontAwesomeIcon icon = {faEnvelope}/>} alt=" " className='logo'/>
-      <ul>
-        <li><a href='/'>Home</a></li>
-        <li><a href=''>Course</a></li>
-        <li><a href=''>Contact</a></li>
-        <li><a href=''>About</a></li>
-      </ul>
+    <nav className="navbar">
+      {/* Left side */}
+      <div className="navbar-brand">Book Store</div>
 
-
-      <div className='search-box'>
-          <input type="text" placeholder='search'/>
-          {/* <img src={<FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />} alt=" " /> */}
-          <p><i className="fa-solid fa-magnifying-glass" style={{color:"white"}}></i></p>
-
+      {/* Right side */}
+      <div className="navbar-links">
+        <a href="#books">Books</a>
+        <a href="#login">Login</a>
       </div>
-
-      <img src=" " alt=" " className='toggle-icon'/>
-
-      <div className='login-btn'>
-        <a href='/login'>Login</a>
-      </div>
-      
-    </div>
-  )
-}
+    </nav>
+  );
+};
 
 export default Navbar;

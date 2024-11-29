@@ -1,35 +1,114 @@
 import React from 'react';
 
-const TermsOfUse = () => {
+const TermOfUse = () => {
   return (
-    <div>
-        <div>
-          <h1>Terms Of Use</h1>
-          <p>These terms define the relationship between Bookswagon and you, along with the terms on which Bookswagon provides the website as well the terms on which products are sold on the website. If you do not agree to these terms, you may not use the website or proceed to purchase any product or service being offered on the website.</p>
-          <p>Nothing in these Terms affects your statutory rights, either as a consumer or otherwise.</p>
-      </div>
+    <div style={styles.container}>
+      <h2 style={styles.heading}>Terms of Use</h2>
+      <p style={styles.intro}>Welcome to our Library Management System. By accessing or using our services, you agree to the following terms and conditions.</p>
+      
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>1. Acceptance of Terms</h3>
+        <p>By using the Library Management System, you agree to comply with these terms of use. If you do not agree, you should not use the service.</p>
+      </section>
 
-      <div>
-            <h2>Your Profile</h2>
-            <ol>
-              <li>It is necessary for you to complete your registration before you can purchase any products from our website. You may register with us and buy products from our website only if your membership has not been previously barred or suspended by Bookswagon.</li>
-              <li>The confidentiality of your account is your own responsibility. Preventing unauthorized access and protecting your account username and password is in the user’s hands. You are urged to inform Bookswagon in case of any suspicious activity or in case you have reason to believe that your account information has been made known to someone else.</li>
-              <li>By providing information on the website, you warrant that the information provided by you is accurate and complete. You also agree that you will notify Bookswagon of the changes in your email, contact no., or postal address in a timely manner. You can update this information in the “My Account” section of our website.</li>
-              <li>There is no charge for registering on our website, or for browsing through, although you have to pay for the products your purchase and the taxes or delivery charges associated with that purchase.
-              </li>
-            </ol>
-      </div>
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>2. User Responsibilities</h3>
+        <ul style={styles.list}>
+          <li>Provide accurate information when registering or accessing the system.</li>
+          <li>Ensure that all actions taken under your account comply with applicable laws.</li>
+          <li>Respect the intellectual property rights of books, authors, and other content available through the system.</li>
+        </ul>
+      </section>
 
-      <div>
-        <h2>Orders and Payment</h2>
-        <ol>
-          <li>While placing an order to purchase a product, we collect some personal and transactional data from you such as your name, address, contact information, card information, etc. For details regarding how this data is used by us, you can refer to our Privacy Policy.</li>
-          
-        </ol>
-      </div>
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>3. Account Security</h3>
+        <p>It is your responsibility to maintain the confidentiality of your account credentials. You agree to notify us immediately if you believe your account has been compromised.</p>
+      </section>
+
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>4. Content Usage</h3>
+        <p>The content provided on the Library Management System is intended for personal use only. You are prohibited from using any content for commercial purposes without explicit permission.</p>
+      </section>
+
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>5. Modifications to Service</h3>
+        <p>We reserve the right to modify, suspend, or terminate any part of the service at any time, with or without notice. We will not be liable for any loss or inconvenience caused by such changes.</p>
+      </section>
+
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>6. Privacy and Data Collection</h3>
+        <p>Your use of the Library Management System is subject to our <a href="/privacy-policy" style={styles.link}>Privacy Policy</a>, which governs the collection, use, and storage of your data.</p>
+      </section>
+
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>7. Limitation of Liability</h3>
+        <p>We do not accept responsibility for any loss or damage arising from the use of the system, including but not limited to data loss, interruptions, or unauthorized access to your account.</p>
+      </section>
+
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>8. Termination</h3>
+        <p>We reserve the right to suspend or terminate your account if you violate these terms. Upon termination, you will no longer be able to access the system or its services.</p>
+      </section>
+
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>9. Governing Law</h3>
+        <p>These terms of use are governed by the laws of [Country/State], and any disputes will be subject to the jurisdiction of the courts in [Location].</p>
+      </section>
+
+      <section style={styles.section}>
+        <h3 style={styles.subHeading}>10. Contact Information</h3>
+        <p>If you have any questions about these terms, please contact us at [Email Address].</p>
+      </section>
+      
+      <footer style={styles.footer}>
+        <p>&copy; 2024 Library Management System. All Rights Reserved.</p>
+      </footer>
     </div>
-    
-  )
-}
+  );
+};
 
-export default TermsOfUse;
+const styles = {
+  container: {
+    maxWidth: "800px",
+    margin: "0 auto",
+    padding: "20px",
+    backgroundColor: "#fff",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    borderRadius: "10px",
+  },
+  heading: {
+    textAlign: "center",
+    fontSize: "24px",
+    color: "#F25822",
+  },
+  intro: {
+    fontSize: "16px",
+    textAlign: "center",
+    marginBottom: "20px",
+    color: "#333",
+  },
+  section: {
+    marginBottom: "20px",
+  },
+  subHeading: {
+    fontSize: "18px",
+    color: "#F25822",
+    marginBottom: "10px",
+  },
+  list: {
+    listStyleType: "disc",
+    marginLeft: "20px",
+  },
+  link: {
+    color: "#F25822",
+    textDecoration: "none",
+  },
+  footer: {
+    textAlign: "center",
+    marginTop: "30px",
+    fontSize: "14px",
+    color: "#555",
+  }
+};
+
+export default TermOfUse;

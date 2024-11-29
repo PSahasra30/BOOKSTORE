@@ -12,6 +12,8 @@ import BlogPage from './components/BlogPage';
 // import Books from './components/Books';
 // import LudoBoard from './components/LudoBoard';
 import Books from './components/Books';
+import BooksA from './components/BooksA';
+import EditBook from './components/EditBook';
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
     // </div>
     <Router>
       <Routes>
-        <Route path="/" element={<Books />} />
+        <Route path="/" element={<TermsOfUse />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/fup" element={<ForgotYourPassword />} />
         <Route path="/signup" element={<SignUpPage />} />

@@ -113,27 +113,47 @@ const Books = () => {
                   border: "1px solid #ddd",
                   borderRadius: "5px",
                   padding: "10px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "350px",
                   textAlign: "center",
                   boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <img
-                  src={book.image}
-                  alt={book.title}
-                  style={{
-                    width: "100%",
-                    height: "150px",
-                    objectFit: "cover",
-                    borderRadius: "5px",
-                  }}
-                />
-                <h3>{book.title}</h3>
-                <p>
-                  <strong>Author:</strong> {book.author}
-                </p>
-                <p>
-                  <strong>Genre:</strong> {book.genre}
-                </p>
+                <div>
+                  <img
+                    src={book.image}
+                    alt={book.title}
+                    style={{
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "cover",
+                      borderRadius: "5px",
+                    }}
+                  />
+                  <h3>{book.title}</h3>
+                  <p>
+                    <strong>Author:</strong> {book.author}
+                  </p>
+                  <p>
+                    <strong>Genre:</strong> {book.genre}
+                  </p>
+                </div>
+                <div style={{ marginTop: "auto" }}>
+                  <button
+                    style={{
+                      padding: "8px 12px",
+                      backgroundColor: "#4CAF50",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Status: Available
+                  </button>
+                </div>
               </div>
             ))}
           </div>

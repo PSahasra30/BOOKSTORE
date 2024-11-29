@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './EditBook.css';
 
-const EditBook = () => {
-  const [formData, setFormData] = useState({
+const EditBook = ({ initialData, onSave }) => {
+  const [formData, setFormData] = useState(initialData || {
     bookName: '',
     authorName: '',
     imageUrl: '',
@@ -18,7 +18,11 @@ const EditBook = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Edited Book Data:', formData);
+    if (!formData.bookName || !formData.authorName || !formData.imageUrl) {
+      alert('All fields are required!');
+      return;
+    }
+    onSave(formData);
     alert('Book details updated successfully!');
   };
 
@@ -59,9 +63,14 @@ const EditBook = () => {
             className="form-input"
           />
         </label>
-        <button type="submit" className="submit-button">
-          Save Changes
-        </button>
+        <div className="form-buttons">
+          <button type="submit" className="submit-button">
+            Save Changes
+          </button>
+          <button type="button" className="cancel-button" onClick={() => window.history.back()}>
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
@@ -20,6 +21,7 @@ import img18 from "../assets/img18.jpg";
 import img19 from "../assets/img19.webp";
 import img20 from "../assets/img20.jpg";
 import "./Books.css";
+import "./BooksA.css"
 
 const BooksA = () => {
   const [books, setBooks] = useState([]);
@@ -72,7 +74,11 @@ const BooksA = () => {
     setSelectedGenre(genre);
     setFilteredBooks(genre === "All" ? books : books.filter((book) => book.genre === genre));
   };
-
+  const navigate = useNavigate();
+  const handleEditRedirect = (book) => {
+    const { id, title, author, genre, image } = book; // Extract only necessary properties
+    navigate('/edit', { state: { id, title, author, genre, image } });
+  };
   const handleDelete = (id) => {
     const updatedBooks = books.filter((book) => book.id !== id);
     setBooks(updatedBooks);
@@ -175,19 +181,19 @@ const BooksA = () => {
                   </p>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-                  <button
-                    onClick={() => handleEdit(book.id, book.title)}
-                    style={{
-                      padding: "8px 12px",
-                      backgroundColor: "#FFC107",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: "5px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Edit
-                  </button>
+                <button
+  onClick={() => handleEditRedirect(book)}
+  style={{
+    padding: "8px 12px",
+    backgroundColor: "#FFC107",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  }}
+>
+  Edit
+</button>
                   <button
                     onClick={() => handleDelete(book.id)}
                     style={{

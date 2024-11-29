@@ -14,7 +14,7 @@ import BlogPage from './components/BlogPage';
 import Books from './components/Books';
 import BooksA from './components/BooksA';
 import EditBook from './components/EditBook';
-
+import Just from './components/Just'
 function App() {
   return (
     // <div className='container'>
@@ -31,7 +31,7 @@ function App() {
     // </div>
     <Router>
       <Routes>
-        <Route path="/" element={<BooksA />} />
+        <Route path="/" element={<Just />} />
         <Route path="/edit" element={<EditBook />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/fup" element={<ForgotYourPassword />} />

@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+const books = require("./models/images")
 const app = express();
+const path=require('path')
 app.use(express.json());
 app.use(cors());
 
@@ -30,26 +31,7 @@ const bookSchema = new mongoose.Schema({
 });
 
 const Book = mongoose.model("Book", bookSchema);
-app.post("/api/books", async (req, res) => {
-  try {
-    const { title, author, genre, description, price, publishedDate, coverImageUrl } = req.body;
 
-    const newBook = new Book({
-      title,
-      author,
-      genre,
-      description,
-      price,
-      publishedDate,
-      coverImageUrl,
-    });
-
-    await newBook.save();
-    res.status(201).json({ message: "Book added successfully!" });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to add book" });
-  }
-});
 app.get("/api/books", async (req, res) => {
   try {
     const books = await Book.find();
@@ -116,8 +98,10 @@ app.post("/api/login", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
-
+app.get("/api/books", (req, res) => {
+  res.json(books); 
+});
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Start the server
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

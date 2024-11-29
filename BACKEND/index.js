@@ -19,6 +19,45 @@ const userSchema = new mongoose.Schema({
   password: String,
   subscribeNewsletter: Boolean,
 });
+const bookSchema = new mongoose.Schema({
+  title: String,
+  author: String,
+  genre: String,
+  description: String,
+  price: Number,
+  publishedDate: Date,
+  coverImageUrl: String, // Link to an image or a local file path
+});
+
+const Book = mongoose.model("Book", bookSchema);
+app.post("/api/books", async (req, res) => {
+  try {
+    const { title, author, genre, description, price, publishedDate, coverImageUrl } = req.body;
+
+    const newBook = new Book({
+      title,
+      author,
+      genre,
+      description,
+      price,
+      publishedDate,
+      coverImageUrl,
+    });
+
+    await newBook.save();
+    res.status(201).json({ message: "Book added successfully!" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add book" });
+  }
+});
+app.get("/api/books", async (req, res) => {
+  try {
+    const books = await Book.find();
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch books" });
+  }
+});
 
 const User = mongoose.model("User", userSchema);
 

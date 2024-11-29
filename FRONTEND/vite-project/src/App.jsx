@@ -31,10 +31,11 @@ function App() {
     // </div>
     <Router>
       <Routes>
-        <Route path="/" element={<BooksA />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/fup" element={<ForgotYourPassword />} />
-        <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/" element={<BooksA />} />
+      <Route path="/edit" element={<EditBook />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/fup" element={<ForgotYourPassword />} />
+      <Route path="/signup" element={<SignUpPage />} />
 
       </Routes>
     </Router>

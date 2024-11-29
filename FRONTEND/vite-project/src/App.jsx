@@ -14,7 +14,6 @@ import BlogPage from './components/BlogPage';
 import Books from './components/Books';
 import BooksA from './components/BooksA';
 import EditBook from './components/EditBook';
-import Just from './components/Just'
 import LibraryCard from './components/LibraryCard';
 function App() {
   const user = {
@@ -36,8 +35,9 @@ function App() {
     // </div>
     <Router>
       <Routes>
-      <Route path="/" element={<LibraryCard user={user} />} />
-      <Route path="/edit" element={<EditBook />} />
+      {/* <Route path="/" element={<LibraryCard user={user} />} /> */}
+      <Route path="/" element={<BooksA />} />
+      <Route path="/edit/:id" element={<EditBook />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/fup" element={<ForgotYourPassword />} />
       <Route path="/signup" element={<SignUpPage />} />

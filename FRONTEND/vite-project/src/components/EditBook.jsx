@@ -1,76 +1,89 @@
-import React, { useState } from 'react';
-import './EditBook.css';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const EditBook = ({ initialData, onSave }) => {
-  const [formData, setFormData] = useState(initialData || {
-    bookName: '',
-    authorName: '',
-    imageUrl: '',
+const EditBook = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const book = location.state?.book;
+
+  const [formData, setFormData] = useState({
+    title: book.title,
+    author: book.author,
+    genre: book.genre,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.bookName || !formData.authorName || !formData.imageUrl) {
-      alert('All fields are required!');
-      return;
+    try {
+      const response = await fetch(`http://localhost:5000/api/books/${book._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Book details updated successfully!");
+        navigate("/"); // Redirect to the main page or any other page
+      } else {
+        alert("Failed to update book details.");
+      }
+    } catch (error) {
+      console.error("Error updating book:", error);
     }
-    onSave(formData);
-    alert('Book details updated successfully!');
   };
 
   return (
-    <div className="edit-book-container">
-      <h1 className="form-heading">Edit Book</h1>
-      <form className="edit-book-form" onSubmit={handleSubmit}>
-        <label className="form-label">
-          Book Name:
+    <div style={{ padding: "20px" }}>
+      <h1>Edit Book</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Title:
           <input
             type="text"
-            name="bookName"
-            value={formData.bookName}
+            name="title"
+            value={formData.title}
             onChange={handleChange}
-            placeholder="Enter book name"
-            className="form-input"
+            style={{ marginBottom: "10px", display: "block", width: "100%" }}
           />
         </label>
-        <label className="form-label">
-          Author Name:
+        <label>
+          Author:
           <input
             type="text"
-            name="authorName"
-            value={formData.authorName}
+            name="author"
+            value={formData.author}
             onChange={handleChange}
-            placeholder="Enter author name"
-            className="form-input"
+            style={{ marginBottom: "10px", display: "block", width: "100%" }}
           />
         </label>
-        <label className="form-label">
-          Image URL:
+        <label>
+          Genre:
           <input
             type="text"
-            name="imageUrl"
-            value={formData.imageUrl}
+            name="genre"
+            value={formData.genre}
             onChange={handleChange}
-            placeholder="Enter image URL"
-            className="form-input"
+            style={{ marginBottom: "10px", display: "block", width: "100%" }}
           />
         </label>
-        <div className="form-buttons">
-          <button type="submit" className="submit-button">
-            Save Changes
-          </button>
-          <button type="button" className="cancel-button" onClick={() => window.history.back()}>
-            Cancel
-          </button>
-        </div>
+        <button
+          type="submit"
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#4CAF50",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Save Changes
+        </button>
       </form>
     </div>
   );

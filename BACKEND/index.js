@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/project", {
+mongoose.connect("mongodb://localhost:27017/bookstore", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -98,9 +98,45 @@ app.post("/api/login", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-app.get("/api/books", (req, res) => {
-  res.json(books); 
+app.put("/api/books/:id", async (req, res) => {
+  const { id } = req.params;
+  const { title, author, genre } = req.body;
+
+  try {
+    // Update the book in your database
+    const updatedBook = await Book.findByIdAndUpdate(
+      id,
+      { title, author, genre },
+      { new: true } // Return the updated book
+    );
+
+    if (!updatedBook) {
+      return res.status(404).send("Book not found");
+    }
+
+    res.status(200).send(updatedBook);
+  } catch (error) {
+    console.error("Error updating book:", error);
+    res.status(500).send("Internal server error");
+  }
 });
+app.delete("/api/books/:id", async (req, res) => {
+  try {
+    const bookId = req.params.id;
+    // Assuming you're using MongoDB
+    const result = await Book.findByIdAndDelete(bookId);
+
+    if (!result) {
+      return res.status(404).send("Book not found");
+    }
+
+    res.status(200).send("Book deleted successfully");
+  } catch (error) {
+    console.error("Error deleting the book:", error);
+    res.status(500).send("Internal server error");
+  }
+});
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Start the server
 const PORT = 5000;

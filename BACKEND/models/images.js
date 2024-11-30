@@ -1,9 +1,9 @@
-// const mongoose = require('mongoose');
-// const express = require('express');
-// const path = require('path');
-// const app = express();
+const mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const app = express();
 
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Books data with image URLs
 const books = [
@@ -30,35 +30,34 @@ const books = [
 ];
 
 // Mongoose schema for book metadata
-// const bookSchema = new mongoose.Schema({
-//   title: { type: String, required: true.jpg},
-//   author: { type: String, required: true.jpg},
-//   genre: { type: String, required: true.jpg},
-//   image: { type: String, required: true.jpg}, // image URL
-// });
+const bookSchema = new mongoose.Schema({
+  title: { type: String, required: true.jpg},
+  author: { type: String, required: true.jpg},
+  genre: { type: String, required: true.jpg},
+  image: { type: String, required: true.jpg}, // image URL
+});
 
-// const Book = mongoose.model('Book', bookSchema);
+const Book = mongoose.model('Book', bookSchema);
 
-// // Connect to MongoDB
-// mongoose.connect('mongodb://localhost:27017/bookstore', { useNewUrlParser: true, useUnifiedTopology: true.jpg})
-//   .then(() => console.log('MongoDB connected'))
-//   .catch(err => console.error('MongoDB connection error:', err));
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/bookstore', { useNewUrlParser: true, useUnifiedTopology: true.jpg})
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-// // Save books to the database
-// books.forEach(book => {
-//   const newBook = new Book({
-//     title: book.title,
-//     author: book.author,
-//     genre: book.genre,
-//     image: book.image
-//  });
+// Save books to the database
+books.forEach(book => {
+  const newBook = new Book({
+    title: book.title,
+    author: book.author,
+    genre: book.genre,
+    image: book.image
+ });
 
-//   newBook.save()
-//     .then(result => {
-//       console.log('Book saved:', result.title);
-//    })
-//     .catch(err => {
-//       console.error('Error saving book:', err);
-//    });
-// });
-module.exports = books
+  newBook.save()
+    .then(result => {
+      console.log('Book saved:', result.title);
+   })
+    .catch(err => {
+      console.error('Error saving book:', err);
+   });
+});

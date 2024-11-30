@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const books = require("./models/images")
+
 const app = express();
 const path=require('path')
 app.use(express.json());

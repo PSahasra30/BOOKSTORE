@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Books.css";
 
-const Just = () => {
+const BooksA = () => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -36,7 +36,13 @@ const Just = () => {
       setFilteredBooks(books.filter((book) => book.genre === genre));
     }
   };
-
+  const handleEditRedirect = (book) => {
+    if (!book._id) {
+      console.error("Book ID is undefined:", book);
+      return;
+    }
+    navigate(`/edit/${book._id}`, { state: { book } });
+  };
   
   const handleDelete = async (id) => {
     try {
@@ -146,7 +152,7 @@ const Just = () => {
                         marginTop: "10px",
                       }}
                     >
-                      <button
+                      <button onClick={() => handleEditRedirect(book)}
                         style={{
                           padding: "8px 12px",
                           backgroundColor: "#FFC107",
@@ -197,4 +203,4 @@ const Just = () => {
   );
 };
 
-export default Just;
+export default BooksA;

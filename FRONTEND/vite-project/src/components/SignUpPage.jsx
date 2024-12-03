@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function SignupPage() {
   const [formData, setFormData] = useState({
@@ -8,7 +9,7 @@ function SignupPage() {
     password: "",
     isNotRobot: false,
   });
-
+  const navigate = useNavigate()
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setFormData((prevFormData) => ({
@@ -43,9 +44,11 @@ function SignupPage() {
       console.error(error);
     }
   };
-
+  const handleSignUp = () => {
+    // navigate('/booksu')
+  }
   const handleLoginRedirect = () => {
-    alert("Redirecting to login page...");
+    navigate('/login')
     // Add your navigation logic here
   };
 
@@ -100,6 +103,7 @@ function SignupPage() {
           <label>I’m not a robot</label>
         </div>
         <button
+        onClick={handleSignUp}
           type="submit"
           style={{
             width: "100%",

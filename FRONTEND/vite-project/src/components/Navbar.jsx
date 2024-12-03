@@ -9,8 +9,8 @@ const Navbar = () => {
 
       {/* Right side */}
       <div className="navbar-links">
-        <a href="#books">Books</a>
-        <a href="#login">Login</a>
+        <a href="/books">Books</a>
+        <a href="/login">Login</a>
       </div>
     </nav>
   );

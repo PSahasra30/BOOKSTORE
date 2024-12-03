@@ -37,7 +37,9 @@ function App() {
     <Router>
       <Routes>
       {/* <Route path="/" element={<LibraryCard user={user} />} /> */}
-      <Route path="/" element={<BooksPage />} />
+      <Route path="/" element={<Navbar />} />
+      <Route path="/books" element={<BooksPage />} />
+      <Route path="/booksu" element={<Books />} />
       <Route path="/edit/:id" element={<EditBook />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/fup" element={<ForgotYourPassword />} />

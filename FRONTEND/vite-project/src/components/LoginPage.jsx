@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student"); // Default role is student
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    navigate("/booksu")
     // Basic validation
     if (!email || !password) {
       setError("Both fields are required");

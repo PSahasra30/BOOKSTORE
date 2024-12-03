@@ -44,30 +44,59 @@ app.get("/api/books", async (req, res) => {
 const User = mongoose.model("User", userSchema);
 
 // Signup endpoint
+const bcrypt = require("bcrypt");
+
 app.post("/api/signup", async (req, res) => {
   try {
     const { name, email, password, subscribeNewsletter } = req.body;
 
-    // Create a new user
+    // Debug: Log incoming request
+    console.log("Incoming request:", req.body);
+
+    // Validate input
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // Check for duplicate email
+    console.log("Checking if user exists with email:", email);
+    const existingUser = await User.findOne({ email });
+    console.log("Query result for email:", existingUser);
+
+    if (existingUser) {
+      // If user already exists, return the specific error
+      return res.status(409).json({ error: "Email already registered" });
+    }
+
+    // If user doesn't exist, create a new user
+    const bcrypt = require("bcrypt");
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = new User({
       name,
       email,
-      password,
+      password: hashedPassword,
       subscribeNewsletter,
     });
 
     await newUser.save();
+    console.log("New user created:", newUser);
     res.status(201).json({ message: "User registered successfully!" });
   } catch (error) {
-    res.status(500).json({ error: "Failed to register user" });
+    console.error("Error during signup:", error);
+    res.status(500).json({ error: "Error signing up. Please try again." });
   }
 });
+
+
+
+
 app.post("/api/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     // Log the incoming login attempt
-    console.log("Login attempt:", { email, password });
+    console.log("Login attempt:", { email, password, role });
 
     // Validate inputs
     if (!email || !password) {

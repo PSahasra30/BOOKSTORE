@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const books = require("./models/images")
+
 const app = express();
 const path=require('path')
 app.use(express.json());
@@ -14,12 +14,12 @@ mongoose.connect("mongodb://localhost:27017/bookstore", {
 });
 
 // Define a schema for user data
-// const userSchema = new mongoose.Schema({
-//   name: String,
-//   email: String,
-//   password: String,
-//   subscribeNewsletter: Boolean,
-// });
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+  subscribeNewsletter: Boolean,
+});
 const bookSchema = new mongoose.Schema({
   title: String,
   author: String,

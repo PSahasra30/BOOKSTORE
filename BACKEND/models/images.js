@@ -61,4 +61,3 @@ books.forEach(book => {
       console.error('Error saving book:', err);
    });
 });
-module.exports = books

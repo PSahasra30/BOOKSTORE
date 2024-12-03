@@ -15,6 +15,7 @@ import Books from './components/Books';
 import BooksA from './components/BooksA';
 import EditBook from './components/EditBook';
 import LibraryCard from './components/LibraryCard';
+import BooksPage from './components/BooksPage';
 function App() {
   const user = {
     name: "John Doe",
@@ -36,7 +37,7 @@ function App() {
     <Router>
       <Routes>
       {/* <Route path="/" element={<LibraryCard user={user} />} /> */}
-      <Route path="/" element={<BooksA />} />
+      <Route path="/" element={<BooksPage />} />
       <Route path="/edit/:id" element={<EditBook />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/fup" element={<ForgotYourPassword />} />
